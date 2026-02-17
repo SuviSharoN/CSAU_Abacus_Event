@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Symposium Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// SYMPOSIUM</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to ABACUS'26</h1>
+      <p>The Annual Business Analytics Congress & Unveiling Symposium</p>
+      <p style="font-size: 14px; color: #999; margin-top: 15px;">Your Team: <strong class="team-id-display">--</strong></p>
+    </section>
+
+    <section>
+      <h2 style="text-align: center; margin-bottom: 30px;">Feature Unlock Progress</h2>
+      <div class="alert alert-info" style="text-align: center; margin-bottom: 40px;">
+        🎯 <strong id="unlock-progress">0 / 6 features unlocked</strong> (<span id="overall-status">0%</span> Complete)
+      </div>
+
+      <div style="background: #1a1a2e; padding: 30px; border-radius: 8px; border-left: 4px solid #D4AF37; text-align: center;">
+        <p style="margin-bottom: 15px; font-size: 16px;">Your team's features will be unlocked as quiz answers are completed correctly.</p>
+        <p style="color: #999; font-size: 14px;">Check back regularly to access new features!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">Unlock • Learn • Compete • Win</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

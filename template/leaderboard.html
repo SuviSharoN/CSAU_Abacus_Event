@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .leaderboard-locked { text-align: center; padding: 60px 20px; }
+    .leaderboard-locked-icon { font-size: 72px; margin-bottom: 20px; }
+    .leaderboard-locked h3 { color: #D4AF37; margin-bottom: 15px; }
+    .medal { display: inline-block; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; font-weight: 700; margin-right: 10px; font-size: 18px; }
+    .medal-gold { background: rgba(212, 175, 55, 0.2); color: #D4AF37; border: 2px solid #D4AF37; }
+    .medal-silver { background: rgba(192, 192, 192, 0.2); color: #c0c0c0; border: 2px solid #c0c0c0; }
+    .medal-bronze { background: rgba(205, 127, 50, 0.2); color: #cd7f32; border: 2px solid #cd7f32; }
+    .medal-normal { background: transparent; color: #D4AF37; border: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// LEADERBOARD</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Leaderboard</h1>
+      <p>See how your team ranks among all participants</p>
+      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+    </section>
+
+    <section>
+      <h2>Team Rankings</h2>
+
+      <div data-section="leaderboard" class="hidden">
+        <div class="leaderboard-locked">
+          <div class="leaderboard-locked-icon">🔒</div>
+          <h3>Leaderboard Coming Soon</h3>
+          <p style="color: #666;">The leaderboard will be revealed once the competitions begin. Check back later to see how your team compares!</p>
+        </div>
+      </div>
+
+      <div id="leaderboardContent" class="hidden">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 40px;">
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; color: #D4AF37; margin-bottom: 10px;">🥇</div>
+            <p style="color: #999; font-size: 12px;">TOTAL TEAMS</p>
+            <h3 style="margin-top: 10px;">20</h3>
+          </div>
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; color: #D4AF37; margin-bottom: 10px;">🎯</div>
+            <p style="color: #999; font-size: 12px;">YOUR RANK</p>
+            <h3 style="margin-top: 10px;" id="yourRank">--</h3>
+          </div>
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; color: #D4AF37; margin-bottom: 10px;">⭐</div>
+            <p style="color: #999; font-size: 12px;">YOUR SCORE</p>
+            <h3 style="margin-top: 10px;" id="yourScore">0</h3>
+          </div>
+        </div>
+
+        <div style="background: #1a1a2e; border-radius: 8px; padding: 20px; border: 1px solid #333;">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 10%;">Rank</th>
+                <th style="width: 40%;">Team Name</th>
+                <th style="width: 30%;">Events Completed</th>
+                <th style="width: 20%;">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="medal medal-gold">1</span></td>
+                <td><strong>Alpha Vectors</strong></td>
+                <td>6/6</td>
+                <td style="color: #D4AF37; font-weight: 700;">28,500</td>
+              </tr>
+              <tr>
+                <td><span class="medal medal-silver">2</span></td>
+                <td><strong>Data Crusaders</strong></td>
+                <td>6/6</td>
+                <td style="color: #D4AF37; font-weight: 700;">25,800</td>
+              </tr>
+              <tr>
+                <td><span class="medal medal-bronze">3</span></td>
+                <td><strong>Analytics Elite</strong></td>
+                <td>5/6</td>
+                <td style="color: #D4AF37; font-weight: 700;">22,300</td>
+              </tr>
+              <tr>
+                <td><span class="medal medal-normal">4</span></td>
+                <td><strong>Business Wizards</strong></td>
+                <td>5/6</td>
+                <td style="color: #999;">19,750</td>
+              </tr>
+              <tr>
+                <td><span class="medal medal-normal">5</span></td>
+                <td><strong>Intelligence Hub</strong></td>
+                <td>4/6</td>
+                <td style="color: #999;">17,200</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-info" style="margin-top: 40px;">ℹ️ <strong>How Scoring Works:</strong><br>• Events: 2,000-10,000 points depending on difficulty<br>• Workshops: Bonus participation points<br>• Speed Bonus: Complete tasks faster for extra points</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">🏆 Compete • Rise • Dominate</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

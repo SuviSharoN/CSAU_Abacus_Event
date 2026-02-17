@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation - ABACUS'26</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// ACCOMMODATION</span></div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../events/index.html" class="nav-link">Events</a></li>
+                <li><a href="../workshops/index.html" class="nav-link">Workshops</a></li>
+                <li><a href="./index.html" class="nav-link active">Accommodation</a></li>
+                <li><a href="../profile/index.html" class="nav-link">Profile</a></li>
+                <li><a href="../leaderboard/index.html" class="nav-link">Leaderboard</a></li>
+                <li><a href="../index.html" class="nav-link logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h2>Accommodation Options</h2>
+            <p>Find and select your preferred accommodation</p>
+            <button class="connected-btn">✓ Connected</button>
+        </div>
+
+        <h1>🏨 Accommodation</h1>
+        
+        <div class="accommodation-list">
+            <div class="hotel-item">
+                <h3>Star Hotel</h3>
+                <p>$80/night | Single bed, WiFi</p>
+                <button class="select-btn" data-hotel="Star Hotel">Select</button>
+            </div>
+            <div class="hotel-item">
+                <h3>Budget Inn</h3>
+                <p>$40/night | Shared room, WiFi</p>
+                <button class="select-btn" data-hotel="Budget Inn">Select</button>
+            </div>
+            <div class="hotel-item">
+                <h3>Luxury Suite</h3>
+                <p>$150/night | Double bed, AC, WiFi</p>
+                <button class="select-btn" data-hotel="Luxury Suite">Select</button>
+            </div>
+        </div>
+
+        <!-- TODO: CODE THIS - Show selected hotel -->
+        <div id="selectedDisplay"></div>
+    </div>
+
+    <a href="../index.html" class="back-link">← Back to Home</a>
+    <script src="script.js"></script>
+</body>
+</html>

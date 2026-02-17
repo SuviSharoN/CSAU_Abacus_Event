@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Workshops</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// WORKSHOPS</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Workshops</h1>
+      <p>Learn from industry experts and enhance your skills</p>
+      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+    </section>
+
+    <section>
+      <h2>Available Workshops</h2>
+      <div data-section="workshops" class="hidden alert alert-warning">🔒 Workshops are currently locked. Check back when they're unlocked!</div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>Advanced Data Analytics</h3>
+          <p>Master advanced analytics techniques using Python and R.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 3 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 30</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💡</div>
+          <h3>Business Intelligence & BI Tools</h3>
+          <p>Hands-on workshop with industry-standard BI tools.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2.5 hours<br><strong>Level:</strong> Beginner-Intermediate<br><strong>Seats:</strong> 25</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>AI & Deep Learning Fundamentals</h3>
+          <p>Introduction to artificial intelligence and deep learning.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 4 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 20</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h3>Financial Analytics & Modeling</h3>
+          <p>Learn financial analysis, modeling, and forecasting techniques.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 3.5 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 35</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Web Analytics & Customer Insights</h3>
+          <p>Understand customer behavior through web analytics.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2 hours<br><strong>Level:</strong> Beginner<br><strong>Seats:</strong> 40</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Data Visualization Masterclass</h3>
+          <p>Create stunning, impactful visualizations.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2.5 hours<br><strong>Level:</strong> Beginner-Intermediate<br><strong>Seats:</strong> 30</p>
+          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
+        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">🎓 Expand your knowledge and skills</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">Learn • Grow • Succeed</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

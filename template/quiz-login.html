@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Quiz Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: #1a1a2e;
+      border: 2px solid #D4AF37;
+      border-radius: 10px;
+      padding: 50px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-header h1 {
+      color: #D4AF37;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #D4AF37;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      background: #0f0f1e;
+      border: 2px solid #333;
+      border-radius: 6px;
+      color: #e0e0e0;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #D4AF37;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #D4AF37;
+      color: #0f0f1e;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #e5bf4f;
+    }
+
+    .error {
+      color: #ff6b6b;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .error.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h1>ABACUS'26</h1>
+      <p>Quiz Challenge</p>
+    </div>
+
+    <form id="quizLoginForm">
+      <div class="form-group">
+        <label for="teamId">Team ID</label>
+        <select id="teamId" required>
+          <option value="">Select Your Team</option>
+          <option value="team1">Team 1</option>
+          <option value="team2">Team 2</option>
+          <option value="team3">Team 3</option>
+          <option value="team4">Team 4</option>
+          <option value="team5">Team 5</option>
+          <option value="team6">Team 6</option>
+          <option value="team7">Team 7</option>
+          <option value="team8">Team 8</option>
+          <option value="team9">Team 9</option>
+          <option value="team10">Team 10</option>
+          <option value="team11">Team 11</option>
+          <option value="team12">Team 12</option>
+          <option value="team13">Team 13</option>
+          <option value="team14">Team 14</option>
+          <option value="team15">Team 15</option>
+          <option value="team16">Team 16</option>
+          <option value="team17">Team 17</option>
+          <option value="team18">Team 18</option>
+          <option value="team19">Team 19</option>
+          <option value="team20">Team 20</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+        <div class="error" id="error">Invalid password</div>
+      </div>
+
+      <button type="submit">Start Quiz</button>
+    </form>
+  </div>
+
+  <script>
+    const teamPasswords = {
+      'team1': 'abacus2026',
+      'team2': 'abacus2026',
+      'team3': 'abacus2026',
+      'team4': 'abacus2026',
+      'team5': 'abacus2026',
+      'team6': 'abacus2026',
+      'team7': 'abacus2026',
+      'team8': 'abacus2026',
+      'team9': 'abacus2026',
+      'team10': 'abacus2026',
+      'team11': 'abacus2026',
+      'team12': 'abacus2026',
+      'team13': 'abacus2026',
+      'team14': 'abacus2026',
+      'team15': 'abacus2026',
+      'team16': 'abacus2026',
+      'team17': 'abacus2026',
+      'team18': 'abacus2026',
+      'team19': 'abacus2026',
+      'team20': 'abacus2026'
+    };
+
+    document.getElementById('quizLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const teamId = document.getElementById('teamId').value;
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error');
+
+      if (teamPasswords[teamId] === password) {
+        sessionStorage.setItem('quizTeamId', teamId);
+        sessionStorage.setItem('quizLoggedIn', 'true');
+        window.location.href = 'quiz.html';
+      } else {
+        errorMsg.classList.add('show');
+      }
+    });
+
+    // If already logged in, go to quiz
+    if (sessionStorage.getItem('quizLoggedIn') === 'true') {
+      window.location.href = 'quiz.html';
+    }
+  </script>
+</body>
+</html>

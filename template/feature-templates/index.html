@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABACUS'26 Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: #0f172a;
+            border-bottom: 2px solid #daa520;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: #daa520;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            line-height: 1.2;
+        }
+
+        .nav-tagline {
+            font-size: 12px;
+            color: #a0a0a0;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #daa520;
+        }
+
+        .nav-link.active {
+            color: #daa520;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 3px;
+        }
+
+        .nav-link.logout {
+            color: #f0f0f0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .welcome-section {
+            border: 2px solid #daa520;
+            border-radius: 15px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(218, 165, 32, 0.05);
+        }
+
+        .welcome-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #daa520;
+        }
+
+        .welcome-section .tagline {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .welcome-section .team-info {
+            font-size: 16px;
+            color: #f0f0f0;
+            margin-top: 40px;
+        }
+
+        .welcome-section .team-info strong {
+            color: #daa520;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #daa520;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: #1e1b4b;
+            padding: 25px;
+            border: 1px solid #333;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
+        }
+
+        .feature-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h2 {
+            font-size: 20px;
+            color: #daa520;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// HOME</span></div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link active">Home</a></li>
+                <li><a href="./events/index.html" class="nav-link">Events</a></li>
+                <li><a href="./workshops/index.html" class="nav-link">Workshops</a></li>
+                <li><a href="./accommodation/index.html" class="nav-link">Accommodation</a></li>
+                <li><a href="./profile/index.html" class="nav-link">Profile</a></li>
+                <li><a href="./leaderboard/index.html" class="nav-link">Leaderboard</a></li>
+                <li><a href="./index.html" class="nav-link logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Welcome to ABACUS'26</h1>
+            <p class="tagline">The Annual Business Analytics Congress & Unveiling Symposium</p>
+            <div class="team-info">
+                Your Team: <strong id="teamNameDisplay">TEAM1</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Display team name from sessionStorage or default
+        const savedTeamName = sessionStorage.getItem('teamName');
+        if (savedTeamName) {
+            document.getElementById('teamNameDisplay').textContent = savedTeamName;
+        }
+    </script>
+</body>
+</html>

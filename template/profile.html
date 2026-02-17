@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// PROFILE</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Team Profile</h1>
+      <p>Create and manage your team information</p>
+      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+    </section>
+
+    <section>
+      <h2>Your Team Profile</h2>
+      <div data-section="profile" class="hidden alert alert-warning">🔒 Profile management is currently locked. Check back when it's unlocked!</div>
+
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form id="profileForm">
+          <div style="margin-bottom: 25px;">
+            <label for="teamIdDisplay">Team ID</label>
+            <input type="text" id="teamIdDisplay" class="team-id-display" value="--" readonly style="background-color: #0f0f1e; cursor: not-allowed; opacity: 0.7;">
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Your unique team identifier</p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="teamName">Team Name *</label>
+            <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Give your team a unique and memorable name</p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="leadName">Team Lead Name *</label>
+            <input type="text" id="leadName" name="leadName" placeholder="Enter team lead's name" required>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="leadEmail">Lead Email Address *</label>
+            <input type="email" id="leadEmail" name="leadEmail" placeholder="lead@example.com" required>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="teamSize">Team Size *</label>
+            <input type="number" id="teamSize" name="teamSize" placeholder="Enter number of team members" min="1" max="10" required>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="bio">Team Bio</label>
+            <textarea id="bio" name="bio" placeholder="Tell us about your team (optional)" rows="4" style="resize: vertical;"></textarea>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Maximum 250 characters</p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="phone">Contact Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1-XXX-XXX-XXXX">
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="organization">College/Organization</label>
+            <input type="text" id="organization" name="organization" placeholder="Enter your college or organization name">
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-feature="profile" disabled style="width: 100%; margin-top: 20px;">💾 Save Profile</button>
+        </form>
+
+        <div id="successMessage" class="alert alert-success hidden" style="margin-top: 20px;">✅ Profile saved successfully!</div>
+      </div>
+
+      <div style="margin-top: 60px; text-align: center;">
+        <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
+        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">👤 Complete your team information</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">Represent • Compete • Achieve</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var formData = {
+        teamId: currentTeamId,
+        teamName: document.getElementById('teamName').value,
+        leadName: document.getElementById('leadName').value,
+        leadEmail: document.getElementById('leadEmail').value,
+        teamSize: document.getElementById('teamSize').value,
+        bio: document.getElementById('bio').value,
+        phone: document.getElementById('phone').value,
+        organization: document.getElementById('organization').value
+      };
+      console.log('Profile saved:', formData);
+      document.getElementById('successMessage').classList.remove('hidden');
+      setTimeout(function() {
+        document.getElementById('successMessage').classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Admin Panel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      padding: 40px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 3px solid #D4AF37;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #1a1a2e;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #D4AF37;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #1a1a2e;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #D4AF37;
+      box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #D4AF37 0%, #c9a227 100%);
+      color: #1a1a2e;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .info-box {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>ABACUS'26</h1>
+      <p>ADMIN UNLOCK PANEL</p>
+    </div>
+
+    <div class="info-box">
+      💡 Use this panel to unlock features for teams during the symposium.
+      Select a team and the feature you want to unlock.
+    </div>
+
+    <form id="unlockForm">
+      <div class="form-group">
+        <label for="teamId">Team ID</label>
+        <select id="teamId" name="teamId" required>
+          <option value="">-- Select a Team --</option>
+          <option value="team1">Team 1</option>
+          <option value="team2">Team 2</option>
+          <option value="team3">Team 3</option>
+          <option value="team4">Team 4</option>
+          <option value="team5">Team 5</option>
+          <option value="team6">Team 6</option>
+          <option value="team7">Team 7</option>
+          <option value="team8">Team 8</option>
+          <option value="team9">Team 9</option>
+          <option value="team10">Team 10</option>
+          <option value="team11">Team 11</option>
+          <option value="team12">Team 12</option>
+          <option value="team13">Team 13</option>
+          <option value="team14">Team 14</option>
+          <option value="team15">Team 15</option>
+          <option value="team16">Team 16</option>
+          <option value="team17">Team 17</option>
+          <option value="team18">Team 18</option>
+          <option value="team19">Team 19</option>
+          <option value="team20">Team 20</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="feature">Feature to Unlock</label>
+        <select id="feature" name="feature" required>
+          <option value="">-- Select a Feature --</option>
+          <option value="quizUnlocked">🧠 Quiz Challenge</option>
+          <option value="registrationUnlocked">📋 Registration</option>
+          <option value="eventsUnlocked">🎯 Events</option>
+          <option value="workshopsUnlocked">🛠️ Workshops</option>
+          <option value="accommodationUnlocked">🏨 Accommodation</option>
+          <option value="profileUnlocked">👤 Profile</option>
+          <option value="leaderboardUnlocked">🏆 Leaderboard</option>
+        </select>
+      </div>
+
+      <button type="submit">🔓 Unlock Feature</button>
+    </form>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('unlockForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const teamId = document.getElementById('teamId').value;
+      const feature = document.getElementById('feature').value;
+
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+
+      fetch('http://localhost:3000/unlock-feature', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          team_id: teamId,
+          feature: feature
+        })
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        messageDiv.textContent = '✅ ' + data.message;
+        messageDiv.className = 'message success';
+        messageDiv.style.display = 'block';
+
+        form.reset();
+
+        setTimeout(function() {
+          messageDiv.style.display = 'none';
+        }, 5000);
+      })
+      .catch(function(error) {
+        messageDiv.textContent = '❌ Error: ' + error.message;
+        messageDiv.className = 'message error';
+        messageDiv.style.display = 'block';
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>

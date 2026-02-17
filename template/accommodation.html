@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Accommodation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// ACCOMMODATION</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Accommodation</h1>
+      <p>Comfortable stays for symposium participants</p>
+      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+    </section>
+
+    <section>
+      <h2>Accommodation Options</h2>
+      <div data-section="accommodation" class="hidden alert alert-warning">🔒 Accommodation booking is currently locked. Check back when it's unlocked!</div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">⭐⭐⭐</div>
+          <h3>Grand Plaza Hotel</h3>
+          <p>Luxury 5-star accommodation in the heart of the city.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $200/night<br><strong>Available Rooms:</strong> 15<br><strong>Amenities:</strong> Wi-Fi, AC, Gym, Restaurant</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⭐⭐⭐⭐</div>
+          <h3>Business Suites Inn</h3>
+          <p>Modern 4-star hotel designed for business travelers.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $150/night<br><strong>Available Rooms:</strong> 25<br><strong>Amenities:</strong> Wi-Fi, AC, Workspace, Restaurant</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⭐⭐⭐⭐⭐</div>
+          <h3>Executive Tower Premium</h3>
+          <p>Ultimate luxury experience with top-tier amenities.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $300/night<br><strong>Available Rooms:</strong> 8<br><strong>Amenities:</strong> Wi-Fi, AC, Spa, Fine Dining, Concierge</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⭐⭐</div>
+          <h3>Budget Comfort Lodge</h3>
+          <p>Affordable option with clean, comfortable rooms.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $80/night<br><strong>Available Rooms:</strong> 40<br><strong>Amenities:</strong> Wi-Fi, AC, Breakfast Included</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⭐⭐⭐</div>
+          <h3>Central Garden Hotel</h3>
+          <p>Mid-range hotel with excellent location and friendly atmosphere.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $120/night<br><strong>Available Rooms:</strong> 20<br><strong>Amenities:</strong> Wi-Fi, AC, Garden, Restaurant</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🛏️</div>
+          <h3>Symposium Hostel</h3>
+          <p>Budget shared accommodation with great networking opportunities.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $40/person<br><strong>Available Beds:</strong> 60<br><strong>Amenities:</strong> Wi-Fi, Common Area, Kitchen</p>
+          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top: 40px;">ℹ️ <strong>Important:</strong> Accommodation must be booked during the symposium. Limited rooms available - reserve early!</div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
+        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">🏨 Comfortable accommodation awaits</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">Rest • Recharge • Succeed</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

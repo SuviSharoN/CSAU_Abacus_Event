@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - ABACUS'26</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// PROFILE</span></div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../events/index.html" class="nav-link">Events</a></li>
+                <li><a href="../workshops/index.html" class="nav-link">Workshops</a></li>
+                <li><a href="../accommodation/index.html" class="nav-link">Accommodation</a></li>
+                <li><a href="./index.html" class="nav-link active">Profile</a></li>
+                <li><a href="../leaderboard/index.html" class="nav-link">Leaderboard</a></li>
+                <li><a href="../index.html" class="nav-link logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h2>Team Profile</h2>
+            <p>Create and manage your team information</p>
+            <button class="connected-btn">Connected</button>
+        </div>
+
+        <h1>Team Profile</h1>
+
+        <div class="profile-form-wrapper">
+            <!-- TODO: CODE THIS - Handle form data capture and save -->
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="teamIdDisplay">Team ID</label>
+                    <input type="text" id="teamIdDisplay" class="team-id-display" value="--" readonly>
+                    <p class="field-note">Your unique team identifier</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamName">Team Name *</label>
+                    <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+                    <p class="field-note">Give your team a unique and memorable name</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadName">Team Lead Name *</label>
+                    <input type="text" id="leadName" name="leadName" placeholder="Enter team lead's name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadEmail">Lead Email Address *</label>
+                    <input type="email" id="leadEmail" name="leadEmail" placeholder="lead@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="teamSize">Team Size *</label>
+                    <input type="number" id="teamSize" name="teamSize" placeholder="Enter number of team members" min="1" max="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Team Bio</label>
+                    <textarea id="bio" name="bio" placeholder="Tell us about your team (optional)" rows="4"></textarea>
+                    <p class="field-note">Maximum 250 characters</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1-XXX-XXX-XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="organization">College/Organization</label>
+                    <input type="text" id="organization" name="organization" placeholder="Enter your college or organization name">
+                </div>
+
+                <button type="submit" id="saveProfileBtn">Save Profile</button>
+            </form>
+
+            <div id="successMessage" class="alert-success hidden">Profile saved successfully!</div>
+        </div>
+    </div>
+
+    <a href="../index.html" class="back-link">Back to Home</a>
+    <script src="script.js"></script>
+</body>
+</html>

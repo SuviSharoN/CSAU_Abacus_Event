@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Quiz Challenge</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .question-card {
+      background: #1a1a2e;
+      border: 2px solid #D4AF37;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .question-number {
+      color: #D4AF37;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .question-text {
+      color: #e0e0e0;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      background: transparent;
+      border: 2px solid #333;
+      border-radius: 6px;
+      padding: 15px 20px;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .option:hover:not(:disabled) {
+      border-color: #D4AF37;
+      background-color: rgba(212, 175, 55, 0.1);
+    }
+
+    .option:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .option.correct {
+      border-color: #51cf66;
+      background-color: rgba(81, 207, 102, 0.2);
+      color: #51cf66;
+    }
+
+    .option.incorrect {
+      border-color: #ff6b6b;
+      background-color: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+    }
+
+    .question-progress {
+      background: #0f0f1e;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      border-left: 4px solid #D4AF37;
+    }
+
+    .progress-bar {
+      background: #333;
+      border-radius: 4px;
+      height: 8px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #D4AF37, #ffc107);
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+    .quiz-complete {
+      text-align: center;
+      padding: 40px 20px;
+      background: #1a1a2e;
+      border: 2px solid #D4AF37;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    .quiz-complete h2 {
+      color: #D4AF37;
+      margin-bottom: 20px;
+    }
+
+    .quiz-complete p {
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .score-display {
+      font-size: 48px;
+      color: #D4AF37;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .quiz-locked {
+      text-align: center;
+      padding: 60px 20px;
+      background: #1a1a2e;
+      border: 2px dashed #666;
+      border-radius: 10px;
+    }
+
+    .quiz-locked-icon {
+      font-size: 72px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-locked h3 {
+      color: #D4AF37;
+      margin-bottom: 15px;
+    }
+
+    .feedback-message {
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback-message.show {
+      display: block;
+    }
+
+    .feedback-correct {
+      background: rgba(81, 207, 102, 0.1);
+      border: 1px solid #51cf66;
+      color: #51cf66;
+    }
+
+    .feedback-incorrect {
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid #ff6b6b;
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+<body>
+  <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+    <section class="quiz-container">
+
+      <!-- Active Quiz -->
+      <div id="quizActiveState" class="hidden">
+        <div class="question-progress">
+          <p style="margin-bottom: 10px; color: #D4AF37;">
+            <strong id="progressText">Question 1 of 10</strong>
+          </p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number" id="questionNumber">Question 1</div>
+          <div class="question-text" id="questionText"></div>
+          <div class="options" id="optionsContainer"></div>
+          <div id="feedbackMessage" class="feedback-message"></div>
+        </div>
+      </div>
+
+      <!-- Complete State -->
+      <div id="quizCompleteState" class="hidden">
+        <div class="quiz-complete">
+          <h2>🎉 Quiz Complete!</h2>
+          <div class="score-display" id="finalScore">10/10</div>
+          <p>Congratulations! You've successfully answered all quiz questions.</p>
+          <p style="color: #D4AF37; font-weight: 600; font-size: 18px;">All features unlocked!</p>
+          <a href="index.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Return Home</a>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">🧠 Think • Learn • Unlock</span></p>
+  </footer>
+
+  <script src="quiz-app.js"></script>
+  <script>
+    // Quiz Questions
+    const quizQuestions = [
+      {
+        id: 1,
+        question: "After logging in, a user tries to access /admin/settings, but the system blocks access because their role is 'user' and not 'admin.' What process is responsible for blocking access?",
+        options: ["Authentication", "Authorization", "Session creation", "Hashing"],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 2,
+        question: "Which of the following statements correctly distinguishes a software bug from an error in web and app development?",
+        options: [
+          "A bug occurs when code fails to compile, while an error is submitted by testers after deployment.",
+          "A bug is a defect that causes the application to malfunction and is usually reported by testers, whereas an error is a mistake in the code caused by misunderstanding requirements and may prevent the code from compiling.",
+          "Bugs only occur in production, while errors only occur during testing.",
+          "Bugs are syntax mistakes, while errors are logic defects found after deployment"
+        ],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 3,
+        question: "What is the output of the following code?\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 1);\n}",
+        options: [
+          "0, 1, 2 followed by 0, 1, 2",
+          "3, 3, 3 followed by 0, 1, 2",
+          "3, 3, 3 followed by 3, 3, 3",
+          "0, 1, 2 followed by 3, 3, 3"
+        ],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 4,
+        question: "You need to store user preferences that persist across browser sessions and can hold large amounts of data. Which storage option should you use?",
+        options: ["Cookies", "SessionStorage", "LocalStorage", "Memory variable"],
+        correctAnswer: 2 // C
+      },
+      {
+        id: 5,
+        question: "A student types the following into the console and hits Enter. What is the result?\n\nlet x = '5';\nlet y = 2;\nconsole.log(x + y);",
+        options: ["7", "52", "NaN", "TypeError: Cannot add string to number"],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 6,
+        question: "Many websites have a 'Search Suggestions' bar. As you type 'G-E-M...', it immediately suggests 'Gemini', 'Gemstone', and 'Geometry'. Which data structure is specifically optimized for this method of searching?",
+        options: ["A Trie", "A Max-Heap", "A Circular Queue", "An Adjacency Matrix"],
+        correctAnswer: 0 // A
+      },
+      {
+        id: 7,
+        question: "Which function reads a file asynchronously in Node.js?",
+        options: ["readFile()", "fs.readFile()", "readFileSync()", "fileRead()"],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 8,
+        question: "Which CSS unit is relative to the font-size of the element?",
+        options: ["em", "%", "px", "vh"],
+        correctAnswer: 0 // A
+      },
+      {
+        id: 9,
+        question: "In JavaScript, what is the purpose of the 'this' keyword?",
+        options: [
+          "To reference the current loop iteration",
+          "To refer to the object that the function belongs to",
+          "To create a new variable",
+          "To define a function"
+        ],
+        correctAnswer: 1 // B
+      },
+      {
+        id: 10,
+        question: "What does REST stand for in API development?",
+        options: [
+          "Representational State Transfer",
+          "Remote Executive Service Transfer",
+          "Rapid Endpoint Server Technology",
+          "Resource Exchange Server Transfer"
+        ],
+        correctAnswer: 0 // A
+      }
+    ];
+
+    let currentQuestion = 0;
+    let answeredQuestions = {};
+
+    // Map each question to the feature it unlocks
+    const questionToFeature = {
+      0: 'eventsUnlocked',
+      1: 'workshopsUnlocked',
+      2: 'accommodationUnlocked',
+      3: 'profileUnlocked',
+      4: 'leaderboardUnlocked',
+      5: 'registrationUnlocked',
+      6: 'registrationUnlocked',
+      7: 'registrationUnlocked',
+      8: 'registrationUnlocked',
+      9: 'registrationUnlocked'
+    };
+
+    // Map feature names to display names
+    const featureDisplayNames = {
+      'eventsUnlocked': 'Events',
+      'workshopsUnlocked': 'Workshops',
+      'accommodationUnlocked': 'Accommodation',
+      'profileUnlocked': 'Profile',
+      'leaderboardUnlocked': 'Leaderboard',
+      'registrationUnlocked': 'Registration'
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      displayQuestion();
+      updateQuizUI();
+    });
+
+    function updateQuizUI() {
+      var activeState = document.getElementById('quizActiveState');
+      var completeState = document.getElementById('quizCompleteState');
+
+      activeState.classList.add('hidden');
+      completeState.classList.add('hidden');
+
+      if (currentQuestion >= quizQuestions.length) {
+        completeState.classList.remove('hidden');
+      } else {
+        activeState.classList.remove('hidden');
+      }
+    }
+
+    function displayQuestion() {
+      if (currentQuestion >= quizQuestions.length) {
+        updateQuizUI();
+        return;
+      }
+
+      const question = quizQuestions[currentQuestion];
+      const progressPercent = ((currentQuestion) / quizQuestions.length) * 100;
+
+      document.getElementById('questionNumber').textContent = `Question ${question.id}`;
+      document.getElementById('questionText').textContent = question.question;
+      document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+      document.getElementById('progressBar').style.width = progressPercent + '%';
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      question.options.forEach(function(option, index) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'option';
+        button.textContent = String.fromCharCode(65 + index) + ') ' + option;
+        button.disabled = answeredQuestions[currentQuestion] !== undefined;
+
+        button.addEventListener('click', function() {
+          handleAnswer(index, question.correctAnswer);
+        });
+
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function handleAnswer(selectedIndex, correctIndex) {
+      answeredQuestions[currentQuestion] = selectedIndex;
+
+      const options = document.querySelectorAll('.option');
+      const feedbackMessage = document.getElementById('feedbackMessage');
+
+      options.forEach(function(btn, index) {
+        btn.disabled = true;
+        if (index === correctIndex) {
+          btn.classList.add('correct');
+        } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+          btn.classList.add('incorrect');
+        }
+      });
+
+      feedbackMessage.classList.add('show');
+
+      if (selectedIndex === correctIndex) {
+        feedbackMessage.classList.add('feedback-correct');
+        feedbackMessage.classList.remove('feedback-incorrect');
+        
+        // Get feature name for display
+        const featureToUnlock = questionToFeature[currentQuestion];
+        const featureDisplayName = featureDisplayNames[featureToUnlock] || 'Feature';
+        
+        feedbackMessage.textContent = '✅ Correct! ' + featureDisplayName + ' feature unlocked!';
+
+        // Send unlock request to backend
+        if (featureToUnlock && currentTeamId) {
+          fetch(API_URL + '/unlock-feature', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              team_id: currentTeamId,
+              feature: featureToUnlock
+            })
+          })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            console.log('Feature unlocked:', data);
+          })
+          .catch(function(error) {
+            console.error('Error unlocking feature:', error);
+          });
+        }
+
+        setTimeout(function() {
+          currentQuestion++;
+          feedbackMessage.classList.remove('show');
+          if (currentQuestion < quizQuestions.length) {
+            displayQuestion();
+          } else {
+            updateQuizUI();
+          }
+        }, 2000);
+      } else {
+        feedbackMessage.classList.add('feedback-incorrect');
+        feedbackMessage.classList.remove('feedback-correct');
+        feedbackMessage.textContent = '❌ Sorry, wrong answer';
+
+        setTimeout(function() {
+          currentQuestion++;
+          feedbackMessage.classList.remove('show');
+          if (currentQuestion < quizQuestions.length) {
+            displayQuestion();
+          } else {
+            updateQuizUI();
+          }
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>

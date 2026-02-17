@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - ABACUS'26</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// WORKSHOPS</span></div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../events/index.html" class="nav-link">Events</a></li>
+                <li><a href="./index.html" class="nav-link active">Workshops</a></li>
+                <li><a href="../accommodation/index.html" class="nav-link">Accommodation</a></li>
+                <li><a href="../profile/index.html" class="nav-link">Profile</a></li>
+                <li><a href="../leaderboard/index.html" class="nav-link">Leaderboard</a></li>
+                <li><a href="../index.html" class="nav-link logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-card">
+            <h2>Workshop Sessions</h2>
+            <p>Expand your knowledge through hands-on workshops</p>
+            <button class="connected-btn">✓ Connected</button>
+        </div>
+
+        <h1>🛠️ Workshops</h1>
+        
+        <div class="workshops-list">
+            <div class="workshop-item">
+                <h3>Web Development Basics</h3>
+                <p>Level: Beginner | Duration: 2 hours</p>
+                <button class="join-btn" data-workshop="Web Dev">Join Interest</button>
+            </div>
+            <div class="workshop-item">
+                <h3>Cloud Computing 101</h3>
+                <p>Level: Intermediate | Duration: 2 hours</p>
+                <button class="join-btn" data-workshop="Cloud">Join Interest</button>
+            </div>
+            <div class="workshop-item">
+                <h3>AI & Machine Learning</h3>
+                <p>Level: Advanced | Duration: 3 hours</p>
+                <button class="join-btn" data-workshop="AI">Join Interest</button>
+            </div>
+        </div>
+
+        <!-- TODO: CODE THIS - Show count of interested workshops -->
+        <div id="countDisplay"></div>
+    </div>
+
+    <a href="../index.html" class="back-link">← Back to Home</a>
+    <script src="script.js"></script>
+</body>
+</html>

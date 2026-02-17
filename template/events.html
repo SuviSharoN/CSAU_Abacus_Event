@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABACUS'26 - Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">ABACUS'26<span class="logo-sub">// EVENTS</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" data-feature="events">Events</a></li>
+          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+          <li><a href="profile.html" data-feature="profile">Profile</a></li>
+          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
+          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Symposium Events</h1>
+      <p>Compete in exciting challenges and showcase your skills</p>
+      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+    </section>
+
+    <section>
+      <h2>Featured Events</h2>
+      <div data-section="events" class="hidden alert alert-warning">🔒 Events are currently locked. Check back when they're unlocked!</div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Data Analytics Challenge</h3>
+          <p>Analyze real-world business data and create insightful visualizations.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 2 hours<br><strong>Prize:</strong> 5000 points</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Register Now</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💼</div>
+          <h3>Business Strategy Case Study</h3>
+          <p>Solve complex business problems using strategic thinking.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 3 hours<br><strong>Prize:</strong> 7500 points</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Register Now</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>AI & Machine Learning Summit</h3>
+          <p>Explore the latest in artificial intelligence and machine learning.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 4 hours<br><strong>Prize:</strong> 10,000 points</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Register Now</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎬</div>
+          <h3>Presentation Showcase</h3>
+          <p>Create and deliver a compelling presentation on a business topic.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 1 hour per team<br><strong>Prize:</strong> 3000 points</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Register Now</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Quick Fire Quiz</h3>
+          <p>Test your knowledge across business, analytics, and general concepts.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 30 minutes<br><strong>Prize:</strong> 2000 points</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Register Now</button>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Panel Discussion & Networking</h3>
+          <p>Interact with industry leaders and network with fellow participants.</p>
+          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Time:</strong> 1.5 hours<br><strong>Prize:</strong> N/A (Networking)</p>
+          <button class="btn btn-primary" data-feature="events" disabled>📋 Attend</button>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
+        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">⏳ Waiting for events to unlock...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
+    <p><span class="gold-text">✨ Challenge yourself • Win prizes</span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
