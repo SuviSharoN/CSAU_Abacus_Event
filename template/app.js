@@ -75,9 +75,6 @@ function updateUnlockStatus(unlocks) {
   if (unlocks.quizUnlocked) enableFeature('quiz');
   else disableFeature('quiz');
 
-  if (unlocks.registrationUnlocked) enableFeature('registration');
-  else disableFeature('registration');
-
   if (unlocks.eventsUnlocked) enableFeature('events');
   else disableFeature('events');
 
@@ -90,8 +87,8 @@ function updateUnlockStatus(unlocks) {
   if (unlocks.profileUnlocked) enableFeature('profile');
   else disableFeature('profile');
 
-  if (unlocks.leaderboardUnlocked) enableFeature('leaderboard');
-  else disableFeature('leaderboard');
+  if (unlocks.logoutUnlocked) enableFeature('logout');
+  else disableFeature('logout');
 
   updateStatusDisplay(unlocks);
 }
@@ -147,21 +144,23 @@ function disableFeature(featureName) {
 }
 
 function updateStatusDisplay(unlocks) {
+  var trackableFeatures = ['eventsUnlocked', 'workshopsUnlocked', 'accommodationUnlocked', 'profileUnlocked', 'logoutUnlocked'];
   var unlockedCount = 0;
-  for (var key in unlocks) {
-    if (unlocks[key] === true) {
+
+  trackableFeatures.forEach(function(featureKey) {
+    if (unlocks[featureKey] === true) {
       unlockedCount++;
     }
-  }
+  });
 
   var progressEl = document.getElementById('unlock-progress');
   if (progressEl) {
-    progressEl.textContent = unlockedCount + ' / 6 features unlocked';
+    progressEl.textContent = unlockedCount + ' / 5 features unlocked';
   }
 
   var overallStatus = document.getElementById('overall-status');
   if (overallStatus) {
-    var percentage = Math.round((unlockedCount / 6) * 100);
+    var percentage = Math.round((unlockedCount / 5) * 100);
     overallStatus.textContent = percentage + '%';
   }
 }
@@ -194,6 +193,11 @@ window.addEventListener('beforeunload', function() {
 });
 
 function logout() {
+  var shouldLogout = window.confirm('Are you sure you want to logout?');
+  if (!shouldLogout) {
+    return;
+  }
+
   sessionStorage.removeItem('indexTeamId');
   sessionStorage.removeItem('indexLoggedIn');
   window.location.href = 'login.html';

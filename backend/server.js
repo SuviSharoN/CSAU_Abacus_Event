@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const archiver = require('archiver');
 
 const app = express();
 const PORT = 3000;
@@ -22,20 +23,58 @@ app.get('/', (req, res) => {
 
 // In-memory storage for teams
 const teams = {};
+const teamCredentials = {};
 
 // Initialize 20 teams (team1 to team20)
 for (let i = 1; i <= 20; i++) {
+  const teamId = `team${i}`;
+  const teamPassword = `AB26TEAM${String(i).padStart(2, '0')}`;
+
+  teamCredentials[teamId] = teamPassword;
+
   teams[`team${i}`] = {
-    registrationUnlocked: false,
     eventsUnlocked: false,
     workshopsUnlocked: false,
     accommodationUnlocked: false,
     profileUnlocked: false,
-    leaderboardUnlocked: false,
+    logoutUnlocked: false,
     quizUnlocked: true,
     quizProgress: 0
   };
 }
+
+// POST endpoint: Team login
+app.post('/team-login', (req, res) => {
+  const { team_id, password } = req.body;
+
+  if (!team_id || !password) {
+    return res.status(400).json({
+      success: false,
+      error: 'Missing team_id or password'
+    });
+  }
+
+  if (!teams[team_id]) {
+    return res.status(404).json({
+      success: false,
+      error: 'Team not found'
+    });
+  }
+
+  if (teamCredentials[team_id] !== password) {
+    console.log(`❌ [${new Date().toLocaleTimeString()}] Failed login: ${team_id.toUpperCase()}`);
+    return res.status(401).json({
+      success: false,
+      error: 'Invalid credentials'
+    });
+  }
+
+  console.log(`✅ [${new Date().toLocaleTimeString()}] Login success: ${team_id.toUpperCase()}`);
+  res.json({
+    success: true,
+    team_id
+  });
+});
 
 // GET endpoint: Get team progress
 app.get('/team-progress', (req, res) => {
@@ -81,12 +120,11 @@ app.post('/unlock-feature', (req, res) => {
   
   // Check if feature is valid
   const validFeatures = [
-    'registrationUnlocked',
     'eventsUnlocked',
     'workshopsUnlocked',
     'accommodationUnlocked',
     'profileUnlocked',
-    'leaderboardUnlocked'
+    'logoutUnlocked'
   ];
   
   if (!validFeatures.includes(feature)) {
@@ -138,12 +176,11 @@ app.post('/submit-quiz-answer', (req, res) => {
   // If correct answer, unlock next feature
   if (is_correct && feature_to_unlock) {
     const validFeatures = [
-      'registrationUnlocked',
       'eventsUnlocked',
       'workshopsUnlocked',
       'accommodationUnlocked',
       'profileUnlocked',
-      'leaderboardUnlocked'
+      'logoutUnlocked'
     ];
     
     if (validFeatures.includes(feature_to_unlock)) {
@@ -164,6 +201,29 @@ app.post('/submit-quiz-answer', (req, res) => {
 });
 
 // Health check endpoint
+app.get('/download-feature-templates.zip', (req, res) => {
+  const featureTemplatesDir = path.join(__dirname, '../template/feature-templates');
+
+  res.setHeader('Content-Type', 'application/zip');
+  res.setHeader('Content-Disposition', 'attachment; filename="feature-templates.zip"');
+
+  const archive = archiver('zip', { zlib: { level: 9 } });
+
+  archive.on('error', function(err) {
+    console.error('❌ ZIP creation error:', err);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Failed to create ZIP file' });
+    } else {
+      res.end();
+    }
+  });
+
+  archive.pipe(res);
+  archive.directory(featureTemplatesDir, 'feature-templates');
+  archive.finalize();
+});
+
+// Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running on port ' + PORT });
 });
@@ -173,6 +233,7 @@ app.listen(PORT, () => {
   console.log('\n' + '='.repeat(60));
   console.log(`🎯 ABACUS'26 Unlock Server started on http://localhost:${PORT}`);
   console.log(`📊 Teams initialized: team1 to team20`);
+  console.log(`🔐 Team passwords pattern: AB26TEAM01 ... AB26TEAM20`);
   console.log(`🔓 Ready to receive feature unlock requests`);
   console.log('='.repeat(60) + '\n');
 });

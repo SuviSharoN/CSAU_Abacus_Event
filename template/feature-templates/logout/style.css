@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Navigation Bar */
 .navbar {
     background: #0f172a;
     border-bottom: 2px solid #daa520;
@@ -27,7 +26,6 @@
     color: #daa520;
     font-weight: bold;
     font-size: 18px;
-    text-decoration: none;
     line-height: 1.2;
 }
 
@@ -48,22 +46,11 @@
     color: #a0a0a0;
     text-decoration: none;
     font-size: 14px;
-    transition: all 0.3s ease;
-    position: relative;
 }
 
+.nav-link.active,
 .nav-link:hover {
     color: #daa520;
-}
-
-.nav-link.active {
-    color: #daa520;
-    border-bottom: 2px solid #daa520;
-    padding-bottom: 3px;
-}
-
-.nav-link.logout {
-    color: #f0f0f0;
 }
 
 body {
@@ -82,23 +69,21 @@ body {
 .welcome-card {
     border: 2px solid #daa520;
     border-radius: 15px;
-    padding: 60px 40px;
+    padding: 50px 30px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     background: rgba(218, 165, 32, 0.05);
 }
 
 .welcome-card h2 {
-    font-size: 36px;
+    font-size: 32px;
     color: #daa520;
-    margin-bottom: 15px;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .welcome-card p {
-    font-size: 16px;
     color: #a0a0a0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .connected-btn {
@@ -107,9 +92,6 @@ body {
     color: #22c55e;
     padding: 10px 25px;
     border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
 }
 
 h1 {
@@ -118,34 +100,32 @@ h1 {
     text-align: center;
 }
 
-/* ===== ROOM REGISTRATION CSS START ===== */
-.room-register-box {
+.logout-box {
     background: #1a1a2e;
     border: 1px solid #333;
     border-radius: 10px;
-    padding: 22px;
+    padding: 24px;
+    text-align: center;
 }
 
-/* TODO:
-   Replicate reference website room-registration styling.
+#logoutBtn {
+    background: #daa520;
+    color: #000;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-   Hints:
-   - Style label and dropdown
-   - Add price text style
-   - Style action buttons
-   - Add hidden/visible state style for paid note
-*/
-/* ===== ROOM REGISTRATION CSS END ===== */
+#logoutBtn:hover {
+    background: #f4c430;
+}
 
 .back-link {
     color: #daa520;
     text-decoration: none;
     font-weight: bold;
-    transition: all 0.3s ease;
     display: inline-block;
     margin-top: 20px;
-}
-
-.back-link:hover {
-    color: #f4c430;
 }

@@ -230,31 +230,7 @@
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('errorMessage');
 
-    // Simple team passwords (can be changed by organizers)
-    const teamPasswords = {
-      'team1': 'abacus2026',
-      'team2': 'abacus2026',
-      'team3': 'abacus2026',
-      'team4': 'abacus2026',
-      'team5': 'abacus2026',
-      'team6': 'abacus2026',
-      'team7': 'abacus2026',
-      'team8': 'abacus2026',
-      'team9': 'abacus2026',
-      'team10': 'abacus2026',
-      'team11': 'abacus2026',
-      'team12': 'abacus2026',
-      'team13': 'abacus2026',
-      'team14': 'abacus2026',
-      'team15': 'abacus2026',
-      'team16': 'abacus2026',
-      'team17': 'abacus2026',
-      'team18': 'abacus2026',
-      'team19': 'abacus2026',
-      'team20': 'abacus2026'
-    };
-
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const teamId = document.getElementById('teamId').value;
@@ -263,27 +239,42 @@
       errorMessage.classList.remove('show');
       errorMessage.textContent = '';
 
-      // Validate password
-      if (!teamPasswords[teamId] || teamPasswords[teamId] !== password) {
-        errorMessage.textContent = '❌ Invalid Team ID or Password. Please try again.';
+      try {
+        const response = await fetch('/team-login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            team_id: teamId,
+            password: password
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          errorMessage.textContent = 'Invalid Team ID or Password. Please try again.';
+          errorMessage.classList.add('show');
+          return;
+        }
+      } catch (error) {
+        errorMessage.textContent = 'Unable to reach server. Please try again.';
         errorMessage.classList.add('show');
         return;
       }
 
-      // Save to session storage (index-specific keys)
       sessionStorage.setItem('indexTeamId', teamId);
       sessionStorage.setItem('indexLoggedIn', 'true');
-
-      // Redirect to home
       window.location.href = 'index.html';
     });
 
-    // Check if already logged in
     window.addEventListener('load', function() {
       if (sessionStorage.getItem('indexLoggedIn') === 'true') {
         window.location.href = 'index.html';
       }
     });
-  </script>
-</body>
+  </script></body>
 </html>
+
+

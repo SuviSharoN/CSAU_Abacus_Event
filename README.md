@@ -60,7 +60,6 @@ blackout_2/
 │   ├── workshops.html
 │   ├── accommodation.html
 │   ├── profile.html
-│   ├── leaderboard.html
 │   ├── style.css
 │   └── app.js
 └── README.md

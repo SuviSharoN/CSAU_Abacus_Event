@@ -124,12 +124,20 @@ h1 {
     text-align: center;
 }
 
-/* TODO: CODE THIS - Grid layout for events (3 columns) */
+/* ===== EVENTS GRID CSS START ===== */
+/* TODO:
+   Replicate reference website events layout.
+
+   Hints:
+   - Use CSS Grid
+   - 3 equal columns
+   - Add spacing between cards
+   - Cards should stretch evenly
+   - Keep layout centered
+*/
 #eventsContainer {
-    /* Display grid with 3 columns */
-    /* Gap between items */
-    /* Responsive: 2 columns on tablet, 1 on mobile */
 }
+/* ===== EVENTS GRID CSS END ===== */
 
 .event-card {
     background: #1e1b4b;

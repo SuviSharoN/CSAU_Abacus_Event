@@ -1,22 +1,29 @@
-🛠️ WORKSHOPS PAGE - BUILD CHALLENGE
+WORKSHOPS PAGE - BUILD CHALLENGE
 
-What You Need to Code:
-----------------------
+Tasks to code:
 
-1. HTML (index.html):
-   - Create a div with id="countDisplay" to show count
+1. HTML Task (index.html)
+- Inside .workshop-nav, add:
+  - Previous button with id="prevWorkshopBtn"
+  - Next button with id="nextWorkshopBtn"
 
-2. CSS (style.css):
-   - Style the countDisplay div (background, padding, font)
+2. JavaScript Task (script.js)
+- Complete Previous button logic (cyclic).
+- Complete Next button logic (cyclic).
 
-3. JavaScript (script.js):
-   - Function 1: toggleWorkshopInterest() - Add/remove from array
-   - Function 2: updateCount() - Display total interested count
+3. CSS Task (style.css)
+- In .workshop-nav, style buttons so:
+  - Previous is at left end
+  - Next is at right end
 
-Expectation:
------------
-- Click "Join Interest" button on any workshop
-- Button changes color (green when joined, yellow when not)
-- Count display updates to show "You're interested in X workshops"
+What is pre-built:
+- Workshop card structure is provided.
+- Workshops data array is provided.
+- renderWorkshop() is fully provided.
+- Initial render call is provided.
 
-That's it!
+Expected output:
+- One workshop card visible at a time.
+- Previous/Next cycles through workshops.
+- Card updates all 4 details correctly.
+- Buttons are placed at opposite ends.

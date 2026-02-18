@@ -5,6 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ABACUS'26 - Workshops</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .workshop-carousel {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .workshop-card {
+      background: #1a1a2e;
+      border: 1px solid #333;
+      border-left: 4px solid #D4AF37;
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .workshop-card h3 {
+      color: #D4AF37;
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    .workshop-details {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #2a2a3f;
+    }
+
+    .detail-label {
+      color: #bbb;
+      font-weight: 600;
+    }
+
+    .detail-value {
+      color: #e0e0e0;
+      text-align: right;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .carousel-controls .btn {
+      min-width: 130px;
+    }
+
+    .workshop-index {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,13 +73,11 @@
       <div class="logo">ABACUS'26<span class="logo-sub">// WORKSHOPS</span></div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
           <li><a href="events.html" data-feature="events">Events</a></li>
           <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
           <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
           <li><a href="profile.html" data-feature="profile">Profile</a></li>
-          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
-          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+          <li><a href="#" data-feature="logout" onclick="logout(); return false;">Logout</a></li>
         </ul>
       </nav>
     </div>
@@ -28,75 +87,87 @@
     <section class="hero">
       <h1>Workshops</h1>
       <p>Learn from industry experts and enhance your skills</p>
-      <div class="status-badge"><span id="connection-status">⚠️ Connecting...</span></div>
+      <div class="status-badge"><span id="connection-status">Connecting...</span></div>
     </section>
 
     <section>
       <h2>Available Workshops</h2>
-      <div data-section="workshops" class="hidden alert alert-warning">🔒 Workshops are currently locked. Check back when they're unlocked!</div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Advanced Data Analytics</h3>
-          <p>Master advanced analytics techniques using Python and R.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 3 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 30</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">💡</div>
-          <h3>Business Intelligence & BI Tools</h3>
-          <p>Hands-on workshop with industry-standard BI tools.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2.5 hours<br><strong>Level:</strong> Beginner-Intermediate<br><strong>Seats:</strong> 25</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🤖</div>
-          <h3>AI & Deep Learning Fundamentals</h3>
-          <p>Introduction to artificial intelligence and deep learning.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 4 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 20</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">💰</div>
-          <h3>Financial Analytics & Modeling</h3>
-          <p>Learn financial analysis, modeling, and forecasting techniques.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 3.5 hours<br><strong>Level:</strong> Intermediate<br><strong>Seats:</strong> 35</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🌐</div>
-          <h3>Web Analytics & Customer Insights</h3>
-          <p>Understand customer behavior through web analytics.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2 hours<br><strong>Level:</strong> Beginner<br><strong>Seats:</strong> 40</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📊</div>
-          <h3>Data Visualization Masterclass</h3>
-          <p>Create stunning, impactful visualizations.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Duration:</strong> 2.5 hours<br><strong>Level:</strong> Beginner-Intermediate<br><strong>Seats:</strong> 30</p>
-          <button class="btn btn-primary" data-feature="workshops" disabled>🎓 Book Workshop</button>
-        </div>
+      <div class="workshop-carousel">
+        <article class="workshop-card">
+          <h3 id="workshopName">Workshop</h3>
+          <div class="workshop-details">
+            <div class="detail-row">
+              <span class="detail-label">Time</span>
+              <span class="detail-value" id="workshopTime">--</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Speaker</span>
+              <span class="detail-value" id="workshopSpeaker">--</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Date</span>
+              <span class="detail-value" id="workshopDate">--</span>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button id="prevWorkshopBtn" class="btn btn-primary" data-feature="workshops" disabled>Left</button>
+            <button id="nextWorkshopBtn" class="btn btn-primary" data-feature="workshops" disabled>Right</button>
+          </div>
+        </article>
+        <p class="workshop-index" id="workshopIndex">1 / 1</p>
       </div>
 
       <div style="margin-top: 40px; text-align: center;">
         <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display">--</strong></p>
-        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">🎓 Expand your knowledge and skills</p>
+        <p style="color: #D4AF37; font-weight: 600; margin-top: 10px;">Expand your knowledge and skills</p>
       </div>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 ABACUS Symposium. All rights reserved.</p>
-    <p><span class="gold-text">Learn • Grow • Succeed</span></p>
+    <p><span class="gold-text">Learn - Grow - Succeed</span></p>
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    var workshops = [
+      { name: 'Advanced Data Analytics', time: '09:00 AM', speaker: 'Dr. Nisha Rao', date: 'March 5, 2026' },
+      { name: 'Business Intelligence and BI Tools', time: '10:30 AM', speaker: 'Arjun Menon', date: 'March 5, 2026' },
+      { name: 'AI and Deep Learning Fundamentals', time: '12:00 PM', speaker: 'Prof. Meera Iyer', date: 'March 6, 2026' },
+      { name: 'Financial Analytics and Modeling', time: '02:00 PM', speaker: 'Karthik Srinivasan', date: 'March 6, 2026' },
+      { name: 'Web Analytics and Customer Insights', time: '03:30 PM', speaker: 'Ananya Shah', date: 'March 6, 2026' }
+    ];
+
+    var workshopPointer = 0;
+    var nameEl = document.getElementById('workshopName');
+    var timeEl = document.getElementById('workshopTime');
+    var speakerEl = document.getElementById('workshopSpeaker');
+    var dateEl = document.getElementById('workshopDate');
+    var indexEl = document.getElementById('workshopIndex');
+    var prevBtn = document.getElementById('prevWorkshopBtn');
+    var nextBtn = document.getElementById('nextWorkshopBtn');
+
+    function renderWorkshop() {
+      var item = workshops[workshopPointer];
+      nameEl.textContent = item.name;
+      timeEl.textContent = item.time;
+      speakerEl.textContent = item.speaker;
+      dateEl.textContent = item.date;
+      indexEl.textContent = (workshopPointer + 1) + ' / ' + workshops.length;
+    }
+
+    prevBtn.addEventListener('click', function() {
+      workshopPointer = (workshopPointer - 1 + workshops.length) % workshops.length;
+      renderWorkshop();
+    });
+
+    nextBtn.addEventListener('click', function() {
+      workshopPointer = (workshopPointer + 1) % workshops.length;
+      renderWorkshop();
+    });
+
+    renderWorkshop();
+  </script>
 </body>
 </html>

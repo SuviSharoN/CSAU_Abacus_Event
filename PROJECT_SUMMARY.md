@@ -50,7 +50,6 @@ r:\CSAU\Abacus _ 26 event\blackout_2\
 │   ├── workshops.html     # FEATURE 3: Workshop details (locked by default)
 │   ├── accommodation.html # FEATURE 4: Accommodation options (locked by default)
 │   ├── profile.html       # FEATURE 5: Team profile form (locked by default)
-│   └── leaderboard.html   # FEATURE 6: Team rankings (locked by default)
 ├── admin/
 │   └── admin.html         # ADMIN PANEL: Unlock features for teams manually
 └── README.md              # Setup and deployment instructions
@@ -211,7 +210,6 @@ function promptForTeamId() {
   "workshops": false,
   "accommodation": false,
   "profile": false,
-  "leaderboard": false,
   "quizProgress": 2
 }
 ```
@@ -401,7 +399,7 @@ node server.js
 - **Lines 1-50:** Header with navigation and logout link
 - **Lines 51-100:** Team display section
 - **Lines 101-200:** 7 feature cards with unlock status
-- **Links to:** quiz.html, events.html, workshops.html, accommodation.html, profile.html, leaderboard.html
+- **Links to:** quiz.html, events.html, workshops.html, accommodation.html, profile.html
 
 **Feature Cards:** Each has `data-status="feature-name"` for app.js matching
 

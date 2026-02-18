@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,11 @@
         <div class="nav-container">
             <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// PROFILE</span></div>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="../events/index.html" class="nav-link">Events</a></li>
                 <li><a href="../workshops/index.html" class="nav-link">Workshops</a></li>
                 <li><a href="../accommodation/index.html" class="nav-link">Accommodation</a></li>
                 <li><a href="./index.html" class="nav-link active">Profile</a></li>
-                <li><a href="../leaderboard/index.html" class="nav-link">Leaderboard</a></li>
-                <li><a href="../index.html" class="nav-link logout">Logout</a></li>
+                <li><a href="../logout/index.html" class="nav-link logout">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -30,62 +28,39 @@
             <button class="connected-btn">Connected</button>
         </div>
 
-        <h1>Team Profile</h1>
+        <h1>Your Team Profile</h1>
 
         <div class="profile-form-wrapper">
-            <!-- TODO: CODE THIS - Handle form data capture and save -->
-            <form id="profileForm">
-                <div class="form-group">
-                    <label for="teamIdDisplay">Team ID</label>
-                    <input type="text" id="teamIdDisplay" class="team-id-display" value="--" readonly>
-                    <p class="field-note">Your unique team identifier</p>
-                </div>
+            <!-- TODO: CODE THIS (HTML TASK)
+                 Build the complete profile form inside this wrapper.
+                 Required form id: profileForm
+                 Required field ids:
+                 - teamIdDisplay (readonly)
+                 - teamName
+                 - leadName
+                 - leadEmail
+                 - teamSize
+                 - bio
+                 - phone
+                 - organization
+                 Required submit button id: saveProfileBtn
+                 Required success message element id: successMessage
+            -->
+        </div>
 
-                <div class="form-group">
-                    <label for="teamName">Team Name *</label>
-                    <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
-                    <p class="field-note">Give your team a unique and memorable name</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="leadName">Team Lead Name *</label>
-                    <input type="text" id="leadName" name="leadName" placeholder="Enter team lead's name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="leadEmail">Lead Email Address *</label>
-                    <input type="email" id="leadEmail" name="leadEmail" placeholder="lead@example.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="teamSize">Team Size *</label>
-                    <input type="number" id="teamSize" name="teamSize" placeholder="Enter number of team members" min="1" max="10" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="bio">Team Bio</label>
-                    <textarea id="bio" name="bio" placeholder="Tell us about your team (optional)" rows="4"></textarea>
-                    <p class="field-note">Maximum 250 characters</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Contact Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1-XXX-XXX-XXXX">
-                </div>
-
-                <div class="form-group">
-                    <label for="organization">College/Organization</label>
-                    <input type="text" id="organization" name="organization" placeholder="Enter your college or organization name">
-                </div>
-
-                <button type="submit" id="saveProfileBtn">Save Profile</button>
-            </form>
-
-            <div id="successMessage" class="alert-success hidden">Profile saved successfully!</div>
+        <div style="margin-top: 60px; text-align: center;">
+            <p style="color: #999; font-size: 14px;">Your Team: <strong class="team-id-display" id="teamSummaryDisplay">--</strong></p>
+            <p style="color: #daa520; font-weight: 600; margin-top: 10px;">Complete your team information</p>
         </div>
     </div>
 
-    <a href="../index.html" class="back-link">Back to Home</a>
+    <a href="../index.html" class="back-link">Back</a>
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+

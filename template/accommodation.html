@@ -5,6 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ABACUS'26 - Accommodation</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .room-register-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #1a1a2e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .room-register-box h3 {
+      color: #D4AF37;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .price-note {
+      margin-top: 8px;
+      margin-bottom: 18px;
+      color: #bbb;
+      font-size: 14px;
+    }
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .paid-note {
+      margin-top: 14px;
+      color: #51cf66;
+      font-weight: 600;
+      display: none;
+    }
+    .paid-note.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,13 +48,11 @@
       <div class="logo">ABACUS'26<span class="logo-sub">// ACCOMMODATION</span></div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="events.html" data-feature="events">Events</a></li>
-          <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
-          <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
-          <li><a href="profile.html" data-feature="profile">Profile</a></li>
-          <li><a href="leaderboard.html" data-feature="leaderboard">Leaderboard</a></li>
-          <li><a href="#" onclick="logout(); return false;">Logout</a></li>
+                <li><a href="events.html" data-feature="events">Events</a></li>
+                <li><a href="workshops.html" data-feature="workshops">Workshops</a></li>
+                <li><a href="accommodation.html" data-feature="accommodation">Accommodation</a></li>
+                <li><a href="profile.html" data-feature="profile">Profile</a></li>
+                <li><a href="#" data-feature="logout" onclick="logout(); return false;">Logout</a></li>
         </ul>
       </nav>
     </div>
@@ -35,54 +69,22 @@
       <h2>Accommodation Options</h2>
       <div data-section="accommodation" class="hidden alert alert-warning">🔒 Accommodation booking is currently locked. Check back when it's unlocked!</div>
 
-      <div class="grid">
-        <div class="card">
-          <div class="card-icon">⭐⭐⭐</div>
-          <h3>Grand Plaza Hotel</h3>
-          <p>Luxury 5-star accommodation in the heart of the city.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $200/night<br><strong>Available Rooms:</strong> 15<br><strong>Amenities:</strong> Wi-Fi, AC, Gym, Restaurant</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
-        </div>
+      <div class="room-register-box">
+        <h3>Register Rooms</h3>
 
-        <div class="card">
-          <div class="card-icon">⭐⭐⭐⭐</div>
-          <h3>Business Suites Inn</h3>
-          <p>Modern 4-star hotel designed for business travelers.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $150/night<br><strong>Available Rooms:</strong> 25<br><strong>Amenities:</strong> Wi-Fi, AC, Workspace, Restaurant</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
-        </div>
+        <label for="hostelChoice">Choose Hostel</label>
+        <select id="hostelChoice" data-feature="accommodation" disabled>
+          <option value="">Select an option</option>
+          <option value="Boys Hostel">Boys Hostel</option>
+          <option value="Girls Hostel">Girls Hostel</option>
+        </select>
+        <p class="price-note">Price: Rs 300 per night</p>
 
-        <div class="card">
-          <div class="card-icon">⭐⭐⭐⭐⭐</div>
-          <h3>Executive Tower Premium</h3>
-          <p>Ultimate luxury experience with top-tier amenities.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $300/night<br><strong>Available Rooms:</strong> 8<br><strong>Amenities:</strong> Wi-Fi, AC, Spa, Fine Dining, Concierge</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
+        <div class="action-row">
+          <button id="registerBtn" class="btn btn-primary hidden" data-feature="accommodation" disabled>Register</button>
+          <button id="payBtn" class="btn btn-primary hidden">Pay Rs 300</button>
         </div>
-
-        <div class="card">
-          <div class="card-icon">⭐⭐</div>
-          <h3>Budget Comfort Lodge</h3>
-          <p>Affordable option with clean, comfortable rooms.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $80/night<br><strong>Available Rooms:</strong> 40<br><strong>Amenities:</strong> Wi-Fi, AC, Breakfast Included</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">⭐⭐⭐</div>
-          <h3>Central Garden Hotel</h3>
-          <p>Mid-range hotel with excellent location and friendly atmosphere.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $120/night<br><strong>Available Rooms:</strong> 20<br><strong>Amenities:</strong> Wi-Fi, AC, Garden, Restaurant</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🛏️</div>
-          <h3>Symposium Hostel</h3>
-          <p>Budget shared accommodation with great networking opportunities.</p>
-          <p style="font-size: 12px; color: #D4AF37; margin-top: 10px;"><strong>Price:</strong> $40/person<br><strong>Available Beds:</strong> 60<br><strong>Amenities:</strong> Wi-Fi, Common Area, Kitchen</p>
-          <button class="btn btn-primary" data-feature="accommodation" disabled>🏨 Reserve</button>
-        </div>
+        <p id="paidNote" class="paid-note">Paid</p>
       </div>
 
       <div class="alert alert-info" style="margin-top: 40px;">ℹ️ <strong>Important:</strong> Accommodation must be booked during the symposium. Limited rooms available - reserve early!</div>
@@ -100,5 +102,37 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    var hostelChoice = document.getElementById('hostelChoice');
+    var registerBtn = document.getElementById('registerBtn');
+    var payBtn = document.getElementById('payBtn');
+    var paidNote = document.getElementById('paidNote');
+
+    hostelChoice.addEventListener('change', function() {
+      paidNote.classList.remove('show');
+      payBtn.classList.add('hidden');
+
+      if (hostelChoice.value) {
+        registerBtn.classList.remove('hidden');
+      } else {
+        registerBtn.classList.add('hidden');
+      }
+    });
+
+    registerBtn.addEventListener('click', function() {
+      payBtn.classList.remove('hidden');
+      paidNote.classList.remove('show');
+    });
+
+    payBtn.addEventListener('click', function() {
+      paidNote.classList.add('show');
+      payBtn.textContent = 'Paid';
+      payBtn.disabled = true;
+    });
+  </script>
 </body>
 </html>
+
+
+
+

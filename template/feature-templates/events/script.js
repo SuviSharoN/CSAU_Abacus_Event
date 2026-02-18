@@ -50,25 +50,29 @@ const events = [
     }
 ];
 
-// TODO: CODE FUNCTION 1 - Render event cards from data
+// TODO: CODE THIS - Render event cards using provided events data
 function renderEvents() {
-    // BLANK: Get eventsContainer element
-    // BLANK: Loop through events array
-    // BLANK: For each event, create a card HTML string with:
-    //   - event.icon
-    //   - event.title
-    //   - event.description
-    //   - "Time: " + event.time + " | Prize: " + event.prize
-    // BLANK: Insert all cards into eventsContainer
+    // TODO:
+    // Render all events dynamically inside #eventsContainer.
+    // Each event should display:
+    // - Icon
+    // - Title
+    // - Description
+    // - Time and Prize
+    // - A functional Register button
+    //
+    // The Register button must pass the correct event ID to handleRegister().
 }
 
-// TODO: CODE FUNCTION 2 - Handle register button click
 function handleRegister(eventId) {
-    // BLANK: Get the event object from events array using eventId
-    // BLANK: Show an alert: "Registered for [event.title]!"
+    const selectedEvent = events.find(event => event.id === eventId);
+    if (!selectedEvent) return;
+    alert('Registered for ' + selectedEvent.title + '!');
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     renderEvents();
 });
+
+

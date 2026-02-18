@@ -1,28 +1,24 @@
-🎯 EVENTS PAGE - BUILD CHALLENGE
+EVENTS PAGE - BUILD CHALLENGE
 
 What You Need to Code:
 ----------------------
 
-1. HTML (index.html):
-   - Already has the event card structure template
-   - Just need to understand the card layout
+1. CSS (style.css):
+   - Main task: complete `#eventsContainer` grid styling
+   - Match reference desktop layout:
+     - 3 columns on desktop
+     - proper spacing between cards
+   - No responsive/mobile requirement for this task
 
-2. CSS (style.css):
-   - Create grid layout for #eventsContainer
-   - 3 columns on desktop
-   - Responsive: 2 columns on tablet, 1 on mobile
-   - Add gap between cards
-
-3. JavaScript (script.js):
-   - Function 1: renderEvents() - Loop through events array and create cards
-   - Function 2: handleRegister() - Show alert when Register is clicked
+2. JavaScript (script.js):
+   - Only 1 coding task in JS:
+     - Complete `renderEvents()`
+     - Use provided `events` data
+     - Render cards with icon, title, description, time+prize, and register button
+   - `handleRegister()` is already implemented
 
 Expectation:
 -----------
-- Display 6 event cards in a 3-column grid (like the screenshot)
-- Each card shows: emoji icon, title, description, time & prize, Register button
-- Click Register → shows alert
-- Cards have hover effect (lift up)
-- Responsive design
+- Cards should appear in a desktop grid similar to the reference website.
+- Clicking Register should show an alert message.
 
-That's it!

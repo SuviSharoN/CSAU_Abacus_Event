@@ -28,6 +28,11 @@ function updateTeamDisplay() {
 }
 
 function logout() {
+  var shouldLogout = window.confirm('Are you sure you want to logout?');
+  if (!shouldLogout) {
+    return;
+  }
+
   sessionStorage.removeItem('quizTeamId');
   sessionStorage.removeItem('quizLoggedIn');
   window.location.href = 'quiz-login.html';

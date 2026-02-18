@@ -151,49 +151,48 @@
   </div>
 
   <script>
-    const teamPasswords = {
-      'team1': 'abacus2026',
-      'team2': 'abacus2026',
-      'team3': 'abacus2026',
-      'team4': 'abacus2026',
-      'team5': 'abacus2026',
-      'team6': 'abacus2026',
-      'team7': 'abacus2026',
-      'team8': 'abacus2026',
-      'team9': 'abacus2026',
-      'team10': 'abacus2026',
-      'team11': 'abacus2026',
-      'team12': 'abacus2026',
-      'team13': 'abacus2026',
-      'team14': 'abacus2026',
-      'team15': 'abacus2026',
-      'team16': 'abacus2026',
-      'team17': 'abacus2026',
-      'team18': 'abacus2026',
-      'team19': 'abacus2026',
-      'team20': 'abacus2026'
-    };
-
-    document.getElementById('quizLoginForm').addEventListener('submit', function(e) {
+    document.getElementById('quizLoginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const teamId = document.getElementById('teamId').value;
       const password = document.getElementById('password').value;
       const errorMsg = document.getElementById('error');
 
-      if (teamPasswords[teamId] === password) {
+      errorMsg.classList.remove('show');
+
+      try {
+        const response = await fetch('/team-login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            team_id: teamId,
+            password: password
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          errorMsg.textContent = 'Invalid Team ID or Password';
+          errorMsg.classList.add('show');
+          return;
+        }
+
         sessionStorage.setItem('quizTeamId', teamId);
         sessionStorage.setItem('quizLoggedIn', 'true');
         window.location.href = 'quiz.html';
-      } else {
+      } catch (error) {
+        errorMsg.textContent = 'Unable to reach server';
         errorMsg.classList.add('show');
       }
     });
 
-    // If already logged in, go to quiz
     if (sessionStorage.getItem('quizLoggedIn') === 'true') {
       window.location.href = 'quiz.html';
     }
-  </script>
-</body>
+  </script></body>
 </html>
+
+

@@ -7,18 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">ABACUS'26<br><span class="nav-tagline">// WORKSHOPS</span></div>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="../events/index.html" class="nav-link">Events</a></li>
                 <li><a href="./index.html" class="nav-link active">Workshops</a></li>
                 <li><a href="../accommodation/index.html" class="nav-link">Accommodation</a></li>
                 <li><a href="../profile/index.html" class="nav-link">Profile</a></li>
-                <li><a href="../leaderboard/index.html" class="nav-link">Leaderboard</a></li>
-                <li><a href="../index.html" class="nav-link logout">Logout</a></li>
+                <li><a href="../logout/index.html" class="nav-link logout">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -26,35 +23,43 @@
     <div class="container">
         <div class="welcome-card">
             <h2>Workshop Sessions</h2>
-            <p>Expand your knowledge through hands-on workshops</p>
-            <button class="connected-btn">✓ Connected</button>
+            <p>Browse workshop details using Previous and Next</p>
+            <button class="connected-btn">Connected</button>
         </div>
 
-        <h1>🛠️ Workshops</h1>
-        
-        <div class="workshops-list">
-            <div class="workshop-item">
-                <h3>Web Development Basics</h3>
-                <p>Level: Beginner | Duration: 2 hours</p>
-                <button class="join-btn" data-workshop="Web Dev">Join Interest</button>
-            </div>
-            <div class="workshop-item">
-                <h3>Cloud Computing 101</h3>
-                <p>Level: Intermediate | Duration: 2 hours</p>
-                <button class="join-btn" data-workshop="Cloud">Join Interest</button>
-            </div>
-            <div class="workshop-item">
-                <h3>AI & Machine Learning</h3>
-                <p>Level: Advanced | Duration: 3 hours</p>
-                <button class="join-btn" data-workshop="AI">Join Interest</button>
-            </div>
-        </div>
+        <h1>Workshops</h1>
 
-        <!-- TODO: CODE THIS - Show count of interested workshops -->
-        <div id="countDisplay"></div>
+        <div class="workshop-card">
+            <h3 id="workshopName">Workshop Name</h3>
+
+            <div class="workshop-details">
+                <div class="detail-row">
+                    <span class="detail-label">Time</span>
+                    <span class="detail-value" id="workshopTime">--</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Speaker</span>
+                    <span class="detail-value" id="workshopSpeaker">--</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value" id="workshopDate">--</span>
+                </div>
+            </div>
+
+            <div class="workshop-nav">
+                <!-- TODO: HTML TASK
+                     Add two buttons inside this div:
+                     1) Previous button with id="prevWorkshopBtn"
+                     2) Next button with id="nextWorkshopBtn"
+                -->
+            </div>
+
+            <p id="workshopIndex" class="workshop-index">1 / 1</p>
+        </div>
     </div>
 
-    <a href="../index.html" class="back-link">← Back to Home</a>
+    <a href="../index.html" class="back-link">Back</a>
     <script src="script.js"></script>
 </body>
 </html>

@@ -35,6 +35,19 @@
       line-height: 1.5;
     }
 
+    .question-text pre {
+      margin-top: 12px;
+      background: #0f0f1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 12px;
+      color: #e0e0e0;
+      font-size: 14px;
+      white-space: pre-wrap;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
     .options {
       display: flex;
       flex-direction: column;
@@ -175,7 +188,7 @@
       <div id="quizActiveState" class="hidden">
         <div class="question-progress">
           <p style="margin-bottom: 10px; color: #D4AF37;">
-            <strong id="progressText">Question 1 of 10</strong>
+            <strong id="progressText">Question 1 of 5</strong>
           </p>
           <div class="progress-bar">
             <div class="progress-fill" id="progressBar" style="width: 0%"></div>
@@ -194,10 +207,10 @@
       <div id="quizCompleteState" class="hidden">
         <div class="quiz-complete">
           <h2>🎉 Quiz Complete!</h2>
-          <div class="score-display" id="finalScore">10/10</div>
+          <div class="score-display" id="finalScore">0/5</div>
           <p>Congratulations! You've successfully answered all quiz questions.</p>
           <p style="color: #D4AF37; font-weight: 600; font-size: 18px;">All features unlocked!</p>
-          <a href="index.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Return Home</a>
+          <a href="index.html" class="btn btn-primary" style="display: inline-block; margin-top: 20px;">Return Dashboard</a>
         </div>
       </div>
 
@@ -218,88 +231,96 @@
     const quizQuestions = [
       {
         id: 1,
-        question: "After logging in, a user tries to access /admin/settings, but the system blocks access because their role is 'user' and not 'admin.' What process is responsible for blocking access?",
-        options: ["Authentication", "Authorization", "Session creation", "Hashing"],
-        correctAnswer: 1 // B
-      },
-      {
-        id: 2,
-        question: "Which of the following statements correctly distinguishes a software bug from an error in web and app development?",
-        options: [
-          "A bug occurs when code fails to compile, while an error is submitted by testers after deployment.",
-          "A bug is a defect that causes the application to malfunction and is usually reported by testers, whereas an error is a mistake in the code caused by misunderstanding requirements and may prevent the code from compiling.",
-          "Bugs only occur in production, while errors only occur during testing.",
-          "Bugs are syntax mistakes, while errors are logic defects found after deployment"
-        ],
-        correctAnswer: 1 // B
-      },
-      {
-        id: 3,
-        question: "What is the output of the following code?\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 1);\n}",
-        options: [
-          "0, 1, 2 followed by 0, 1, 2",
-          "3, 3, 3 followed by 0, 1, 2",
-          "3, 3, 3 followed by 3, 3, 3",
-          "0, 1, 2 followed by 3, 3, 3"
-        ],
-        correctAnswer: 1 // B
-      },
-      {
-        id: 4,
-        question: "You need to store user preferences that persist across browser sessions and can hold large amounts of data. Which storage option should you use?",
-        options: ["Cookies", "SessionStorage", "LocalStorage", "Memory variable"],
+        question: "In the CSS Box Model, if an element has <code>width: 200px</code>, <code>padding: 20px</code>, and <code>border: 5px</code>, what is the total rendered width if <code>box-sizing</code> is set to <code>content-box</code> (default)?",
+        options: ["200px", "225px", "250px", "240px"],
         correctAnswer: 2 // C
       },
       {
+        id: 2,
+        question: "What will be printed by this code?<pre><code>&lt;input id=\"name\" value=\"Alice\"&gt;\nlet input = document.getElementById(\"name\");\ninput.innerText = \"Bob\";\nconsole.log(input.value);</code></pre>",
+        options: [
+          "Alice",
+          "Bob",
+          "undefined",
+          "TypeError is thrown"
+        ],
+        correctAnswer: 0 // A
+      },
+      {
+        id: 3,
+        question: "When using the <code>defer</code> attribute on a script tag, when does the script execute relative to HTML parsing?",
+        options: [
+          "Immediately after the script is downloaded, pausing the parser.",
+          "Asynchronously while the parser continues, and then immediately once downloaded.",
+          "Only after the window.onload event has fired.",
+          "After the document is fully parsed but before the DOMContentLoaded event."
+        ],
+        correctAnswer: 3 // D
+      },
+      {
+        id: 4,
+        question: "What is the output if the button is clicked once?<pre><code>const btn = document.getElementById(\"btn\");\n\nbtn.onclick = function() {\n  console.log(\"A\");\n};\n\nbtn.addEventListener(\"click\", function() {\n  console.log(\"B\");\n});\n\nbtn.onclick = function() {\n  console.log(\"C\");\n};</code></pre>",
+        options: ["A B C", "C", "B C", "C B"],
+        correctAnswer: 3 // D
+      },
+      {
         id: 5,
-        question: "A student types the following into the console and hits Enter. What is the result?\n\nlet x = '5';\nlet y = 2;\nconsole.log(x + y);",
-        options: ["7", "52", "NaN", "TypeError: Cannot add string to number"],
-        correctAnswer: 1 // B
+        question: "When you type <code>google.com</code> in your browser, DNS checks local cache/hosts first and then resolver hierarchy. Which final server holds the actual IP address for a specific domain?",
+        options: ["Root Nameserver", "TLD Nameserver (.com)", "Authoritative Nameserver", "Gateway Router"],
+        correctAnswer: 2 // C
       },
-      {
-        id: 6,
-        question: "Many websites have a 'Search Suggestions' bar. As you type 'G-E-M...', it immediately suggests 'Gemini', 'Gemstone', and 'Geometry'. Which data structure is specifically optimized for this method of searching?",
-        options: ["A Trie", "A Max-Heap", "A Circular Queue", "An Adjacency Matrix"],
-        correctAnswer: 0 // A
-      },
-      {
-        id: 7,
-        question: "Which function reads a file asynchronously in Node.js?",
-        options: ["readFile()", "fs.readFile()", "readFileSync()", "fileRead()"],
-        correctAnswer: 1 // B
-      },
-      {
-        id: 8,
-        question: "Which CSS unit is relative to the font-size of the element?",
-        options: ["em", "%", "px", "vh"],
-        correctAnswer: 0 // A
-      },
-      {
-        id: 9,
-        question: "In JavaScript, what is the purpose of the 'this' keyword?",
-        options: [
-          "To reference the current loop iteration",
-          "To refer to the object that the function belongs to",
-          "To create a new variable",
-          "To define a function"
-        ],
-        correctAnswer: 1 // B
-      },
-      {
-        id: 10,
-        question: "What does REST stand for in API development?",
-        options: [
-          "Representational State Transfer",
-          "Remote Executive Service Transfer",
-          "Rapid Endpoint Server Technology",
-          "Resource Exchange Server Transfer"
-        ],
-        correctAnswer: 0 // A
-      }
+
     ];
 
     let currentQuestion = 0;
     let answeredQuestions = {};
+    let correctAnswersCount = 0;
+
+    function getQuizStateKey() {
+      var teamId = currentTeamId || sessionStorage.getItem('quizTeamId') || 'unknown';
+      return 'quizState_' + String(teamId).toLowerCase();
+    }
+
+    function saveQuizState() {
+      var state = {
+        currentQuestion: currentQuestion,
+        answeredQuestions: answeredQuestions,
+        correctAnswersCount: correctAnswersCount
+      };
+      sessionStorage.setItem(getQuizStateKey(), JSON.stringify(state));
+    }
+
+    function saveQuizStateWithQuestion(nextQuestion) {
+      var state = {
+        currentQuestion: nextQuestion,
+        answeredQuestions: answeredQuestions,
+        correctAnswersCount: correctAnswersCount
+      };
+      sessionStorage.setItem(getQuizStateKey(), JSON.stringify(state));
+    }
+
+    function loadQuizState() {
+      var raw = sessionStorage.getItem(getQuizStateKey());
+      if (!raw) return;
+
+      try {
+        var parsed = JSON.parse(raw);
+        if (typeof parsed.currentQuestion === 'number') {
+          currentQuestion = parsed.currentQuestion;
+        }
+        if (parsed.answeredQuestions && typeof parsed.answeredQuestions === 'object') {
+          answeredQuestions = parsed.answeredQuestions;
+        }
+        if (typeof parsed.correctAnswersCount === 'number') {
+          correctAnswersCount = parsed.correctAnswersCount;
+        }
+      } catch (e) {
+        console.error('Failed to load quiz state:', e);
+      }
+
+      if (currentQuestion < 0) currentQuestion = 0;
+      if (currentQuestion > quizQuestions.length) currentQuestion = quizQuestions.length;
+    }
 
     // Map each question to the feature it unlocks
     const questionToFeature = {
@@ -307,12 +328,7 @@
       1: 'workshopsUnlocked',
       2: 'accommodationUnlocked',
       3: 'profileUnlocked',
-      4: 'leaderboardUnlocked',
-      5: 'registrationUnlocked',
-      6: 'registrationUnlocked',
-      7: 'registrationUnlocked',
-      8: 'registrationUnlocked',
-      9: 'registrationUnlocked'
+      4: 'logoutUnlocked'
     };
 
     // Map feature names to display names
@@ -321,11 +337,11 @@
       'workshopsUnlocked': 'Workshops',
       'accommodationUnlocked': 'Accommodation',
       'profileUnlocked': 'Profile',
-      'leaderboardUnlocked': 'Leaderboard',
-      'registrationUnlocked': 'Registration'
+      'logoutUnlocked': 'Logout'
     };
 
     document.addEventListener('DOMContentLoaded', function() {
+      loadQuizState();
       displayQuestion();
       updateQuizUI();
     });
@@ -338,6 +354,8 @@
       completeState.classList.add('hidden');
 
       if (currentQuestion >= quizQuestions.length) {
+        document.getElementById('finalScore').textContent = correctAnswersCount + '/' + quizQuestions.length;
+        saveQuizState();
         completeState.classList.remove('hidden');
       } else {
         activeState.classList.remove('hidden');
@@ -354,7 +372,7 @@
       const progressPercent = ((currentQuestion) / quizQuestions.length) * 100;
 
       document.getElementById('questionNumber').textContent = `Question ${question.id}`;
-      document.getElementById('questionText').textContent = question.question;
+      document.getElementById('questionText').innerHTML = question.question;
       document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
       document.getElementById('progressBar').style.width = progressPercent + '%';
 
@@ -378,6 +396,33 @@
 
     function handleAnswer(selectedIndex, correctIndex) {
       answeredQuestions[currentQuestion] = selectedIndex;
+      const isCorrect = selectedIndex === correctIndex;
+      const currentQuestionId = quizQuestions[currentQuestion].id;
+      const featureToUnlock = questionToFeature[currentQuestion] || null;
+
+      if (currentTeamId) {
+        fetch(API_URL + '/submit-quiz-answer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            team_id: currentTeamId,
+            question_id: currentQuestionId,
+            is_correct: isCorrect,
+            feature_to_unlock: featureToUnlock
+          })
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log('Quiz answer submitted:', data);
+        })
+        .catch(function(error) {
+          console.error('Error submitting quiz answer:', error);
+        });
+      }
 
       const options = document.querySelectorAll('.option');
       const feedbackMessage = document.getElementById('feedbackMessage');
@@ -393,41 +438,24 @@
 
       feedbackMessage.classList.add('show');
 
-      if (selectedIndex === correctIndex) {
+      if (isCorrect) {
+        correctAnswersCount++;
         feedbackMessage.classList.add('feedback-correct');
         feedbackMessage.classList.remove('feedback-incorrect');
         
         // Get feature name for display
-        const featureToUnlock = questionToFeature[currentQuestion];
-        const featureDisplayName = featureDisplayNames[featureToUnlock] || 'Feature';
-        
-        feedbackMessage.textContent = '✅ Correct! ' + featureDisplayName + ' feature unlocked!';
+        const featureDisplayName = featureDisplayNames[featureToUnlock];
 
-        // Send unlock request to backend
-        if (featureToUnlock && currentTeamId) {
-          fetch(API_URL + '/unlock-feature', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              team_id: currentTeamId,
-              feature: featureToUnlock
-            })
-          })
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(data) {
-            console.log('Feature unlocked:', data);
-          })
-          .catch(function(error) {
-            console.error('Error unlocking feature:', error);
-          });
+        if (featureToUnlock && featureDisplayName) {
+          feedbackMessage.textContent = '✅ Correct! ' + featureDisplayName + ' feature unlocked!';
+        } else {
+          feedbackMessage.textContent = '✅ Correct! Moving to next question.';
         }
 
+        saveQuizStateWithQuestion(currentQuestion + 1);
         setTimeout(function() {
           currentQuestion++;
+          saveQuizState();
           feedbackMessage.classList.remove('show');
           if (currentQuestion < quizQuestions.length) {
             displayQuestion();
@@ -440,8 +468,10 @@
         feedbackMessage.classList.remove('feedback-correct');
         feedbackMessage.textContent = '❌ Sorry, wrong answer';
 
+        saveQuizStateWithQuestion(currentQuestion + 1);
         setTimeout(function() {
           currentQuestion++;
+          saveQuizState();
           feedbackMessage.classList.remove('show');
           if (currentQuestion < quizQuestions.length) {
             displayQuestion();
@@ -454,3 +484,5 @@
   </script>
 </body>
 </html>
+
+

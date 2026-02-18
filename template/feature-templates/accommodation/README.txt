@@ -1,22 +1,36 @@
-🏨 ACCOMMODATION PAGE - BUILD CHALLENGE
+ACCOMMODATION PAGE - BUILD CHALLENGE
 
 What You Need to Code:
 ----------------------
 
 1. HTML (index.html):
-   - Create a div with id="selectedDisplay" to show selected hotel
+   - Build the full "Register Rooms" UI inside `.room-register-box`
+   - Required IDs:
+     - hostelChoice (select)
+     - registerBtn (button)
+     - payBtn (button)
+     - paidNote (text/message)
+   - Dropdown options must be:
+     - Boys Hostel
+     - Girls Hostel
+   - Show price text: Rs 300 per night
 
 2. CSS (style.css):
-   - Style the selectedDisplay div (background, padding, font)
+   - Base box styling is provided
+   - Style the form elements to match reference website look
+   - Focus on dropdown, buttons, price text, and paid state
 
 3. JavaScript (script.js):
-   - Function 1: selectHotel() - Store hotel name when clicked
-   - Function 2: updateDisplay() - Show selected hotel name
+   - Complete these functions:
+     - handleHostelSelection(...)
+     - handleRegisterClick(...)
+     - handlePayClick(...)
+   - Keep logic basic and clear
 
-Expectation:
------------
-- Click "Select" button on any hotel
-- Display updates to show "Selected: [Hotel Name]"
-- Simple and straightforward
+Expected Flow:
+--------------
+1. User selects hostel from dropdown
+2. Register button appears
+3. Clicking Register shows Pay button
+4. Clicking Pay shows "Paid"
 
-Done!
